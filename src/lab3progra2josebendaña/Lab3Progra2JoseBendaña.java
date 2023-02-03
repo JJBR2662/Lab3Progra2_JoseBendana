@@ -301,22 +301,6 @@ public class Lab3Progra2JoseBendaña {
                                     System.out.print("Ingrese que carro desea modificar: ");
                                     queve = enteros.nextInt();
                                 } while (queve >= concesionarias.get(quecon6).getCarros().size() || queve < 0);
-                                System.out.print("Ingrese el color del vehiculo: ");
-                                String color = orac.nextLine();
-                                concesionarias.get(quecon6).getCarros().get(queve).setColor(color);
-                                System.out.print("Ingrese la marca del vehiculo: ");
-                                String marca = orac.nextLine();
-                                concesionarias.get(quecon6).getCarros().get(queve).setMarca(marca);
-                                System.out.print("Ingrese el modelo del vehiculo: ");
-                                String modelo = orac.nextLine();
-                                concesionarias.get(quecon6).getCarros().get(queve).setModelo(modelo);
-                                System.out.print("Ingrese el anio de fabricacion: ");
-                                int anio = enteros.nextInt();
-                                concesionarias.get(quecon6).getCarros().get(queve).setAnio(anio);
-                                System.out.print("Ingrese el precio del vehiculo: ");
-                                double precio = dobles.nextDouble();
-                                concesionarias.get(quecon6).getCarros().get(queve).setPrecio(precio);
-
                                 if (concesionarias.get(quecon6).getCarros().get(queve) instanceof Carro) {
                                     System.out.print("Ingrese la nueva cantidad de puertas: ");
                                     int cantpuertas = enteros.nextInt();
@@ -433,7 +417,97 @@ public class Lab3Progra2JoseBendaña {
                     } while (opcion > 3 || opcion < 1);
                     break;
                 case 4:
+                    int cual4;
+                    do {
+                        System.out.println("""
+                                           1- Compra
+                                           2- Venta de vehiculos por parte de un cliente""");
+                        System.out.print("Ingrese opcion: ");
+                        cual4 = enteros.nextInt();
+                        switch (cual4) {
+                            case 1:
+                                int cualcli; 
+                                do{
+                                    for (Cliente c : clientes) {
+                                        System.out.println(clientes.indexOf(c)+"- "+c);
+                                    }
+                                    System.out.print("Ingrese que cliente quiere comprar: ");
+                                    cualcli = enteros.nextInt();
+                                    if (cualcli>=clientes.size()||cualcli<0) {
+                                        System.out.println("Opcion no valida, ingrese de nuevo");
+                                    }
+                                }while(cualcli>=clientes.size()||cualcli<0);
+                                int quecons;
+                                do{
+                                    for (Concesionaria j : concesionarias) {
+                                        System.out.println(concesionarias.indexOf(j)+"- "+j);
+                                    }
+                                    System.out.println("Ingrese que consecionario quiere visitar: ");
+                                    quecons = enteros.nextInt();
+                                    if (quecons>=concesionarias.size()||quecons<0) {
+                                        System.out.println("Opcion no valida, ingrese de nuevo");
+                                    }
+                                }while(quecons>=concesionarias.size()||quecons<0);
+                                int queveh;
+                                if(concesionarias.get(quecons).getCarros().isEmpty()){
+                                    System.out.println("Este concesionario esta vacio");
+                                }else{
+                                    do{
+                                        for (Vehiculo a : concesionarias.get(quecons).getCarros()) {
+                                            System.out.println(concesionarias.get(quecons).getCarros().indexOf(a)+"- "+a);
+                                        }
+                                        System.out.print("Ingrese el vehiculo que quiere comprar: ");
+                                        queveh = enteros.nextInt();
+                                        if (queveh>=concesionarias.get(quecons).getCarros().size()||queveh<0){
+                                            System.out.println("Opcion no valida, ingrese de nuevo");
+                                        }
+                                    }while(queveh>=concesionarias.get(quecons).getCarros().size()||queveh<0);
+                                    if (clientes.get(cualcli).getSaldo()>= concesionarias.get(quecons).getCarros().get(queveh).getPrecio()) {
+                                        clientes.get(cualcli).setSaldo(clientes.get(cualcli).getSaldo()- concesionarias.get(quecons).getCarros().get(queveh).getPrecio());
+                                        clientes.get(cualcli).getCarrosobtenidos().add(concesionarias.get(quecons).getCarros().get(queveh));
+                                        concesionarias.get(quecons).setSaldo(concesionarias.get(quecons).getSaldo()+concesionarias.get(quecons).getCarros().get(queveh).getPrecio());
+                                        concesionarias.get(quecons).getCarros().remove(queveh);
+                                        concesionarias.get(quecons).getClientes().add(clientes.get(cualcli));
+                                    }else{
+                                        System.out.println("El cliente no tiene suficiente dinero");
+                                    }
+                                }
+                                break;
+                            case 2:
+                                int quecons2;
+                                do{
+                                    for (Concesionaria j : concesionarias) {
+                                        System.out.println(concesionarias.indexOf(j)+"- "+j);
+                                    }
+                                    System.out.println("Ingrese que consecionario quiere visitar: ");
+                                    quecons2 = enteros.nextInt();
+                                    if (quecons2>=concesionarias.size()||quecons2<0) {
+                                        System.out.println("Opcion no valida, ingrese de nuevo");
+                                    }
+                                }while(quecons2>=concesionarias.size()||quecons2<0);
+                                int cualcli2; 
+                                do{
+                                    for (Cliente c : clientes) {
+                                        System.out.println(clientes.indexOf(c)+"- "+c);
+                                    }
+                                    System.out.print("Ingrese que cliente quiere comprar: ");
+                                    cualcli2 = enteros.nextInt();
+                                    if (cualcli2>=clientes.size()||cualcli2<0) {
+                                        System.out.println("Opcion no valida, ingrese de nuevo");
+                                    }
+                                }while(cualcli2>=clientes.size()||cualcli2<0);
+                                if (clientes.get(cualcli2).getCarrosobtenidos().isEmpty()){
+                                    System.out.println("Este cliente no tiene vehiculos");
+                                }else{
+                                    
+                                }
+                                break;
+                            default:
+                                System.out.println("Opcion no valida, ingrese de nuevo");
+                                break;
 
+                        }
+                    } while (cual4 > 2 || cual4 < 1);
                     break;
                 case 5:
                     System.out.println("Saliendooooooooo.........");
@@ -489,9 +563,6 @@ public class Lab3Progra2JoseBendaña {
                         System.out.print("Ingrese la nueva direccion: ");
                         String nuevadirec = orac.nextLine();
                         concesionarias.get(cual).setDireccion(nuevadirec);
-                        System.out.print("Ingrese el nuevo saldo: ");
-                        double nuevosaldo = dobles.nextDouble();
-                        concesionarias.get(cual).setSaldo(nuevosaldo);
                         System.out.println("Se ha modificado perfectamente");
                     }
                     break;
