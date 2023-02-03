@@ -85,7 +85,7 @@ public class Lab3Progra2JoseBendaña {
                             case 1:
                                 if (concesionarias.isEmpty()) {
                                     System.out.println("No se puede crear carro, no hay donde tirarlo");
-                                }else{
+                                } else {
                                     System.out.print("Ingrese el color del vehiculo: ");
                                     String color = orac.nextLine();
                                     System.out.print("Ingrese la marca del vehiculo: ");
@@ -97,40 +97,53 @@ public class Lab3Progra2JoseBendaña {
                                     System.out.print("Ingrese el precio del vehiculo: ");
                                     double precio = dobles.nextDouble();
                                     int cantllantas;
-                                    do{
+                                    do {
                                         System.out.print("Ingrese la cantidad de llantas [2 o 4]: ");
                                         cantllantas = enteros.nextInt();
-                                        if (cantllantas>4||cantllantas==3||cantllantas<2) {
+                                        if (cantllantas > 4 || cantllantas == 3 || cantllantas < 2) {
                                             System.out.println("Cantidad de llantas no valida");
                                         }
-                                    }while(cantllantas>4||cantllantas==3||cantllantas<2);
-                                    if (cantllantas==2){
+                                    } while (cantllantas > 4 || cantllantas == 3 || cantllantas < 2);
+                                    if (cantllantas == 2) {
                                         int dos;
-                                        do{
+                                        do {
                                             System.out.println("""
                                                                1- Motocicleta
                                                                2- Bicicleta""");
                                             System.out.print("Ingrese que vehiculo de dos llantas desea crear: ");
                                             dos = enteros.nextInt();
-                                            switch(dos){
+                                            switch (dos) {
                                                 case 1:
                                                     System.out.print("Ingrese el desplazamiento del motor: ");
                                                     String desp = orac.nextLine();
                                                     char resp;
-                                                    do{
+                                                    do {
                                                         System.out.print("Es electrica [s/n]? ");
                                                         resp = car.next().charAt(0);
-                                                        if (resp!='s'||resp!='S'||resp!='n'||resp!='N') {
+                                                        if (resp != 's' || resp != 'S' || resp != 'n' || resp != 'N') {
                                                             System.out.println("Opcion no valida, intente de nuevo");
                                                         }
-                                                    }while(resp!='s'||resp!='S'||resp!='n'||resp!='N');
+                                                    } while (resp != 's' || resp != 'S' || resp != 'n' || resp != 'N');
                                                     boolean seraelectrica;
-                                                    if (resp=='s'||resp=='S'){
+                                                    if (resp == 's' || resp == 'S') {
                                                         seraelectrica = true;
-                                                    }else{
+                                                    } else {
                                                         seraelectrica = false;
                                                     }
                                                     vehiculos.add(new Motocicleta(desp, seraelectrica, color, marca, modelo, anio, precio, cantllantas));
+                                                    int quecon;
+                                                    do {
+                                                        for (Concesionaria f : concesionarias) {
+                                                            System.out.println(concesionarias.indexOf(f) + "- " + f);
+                                                        }
+                                                        System.out.print("Ingrese a que concesionario lo quiere agregar: ");
+                                                        quecon = enteros.nextInt();
+                                                        if (quecon >= concesionarias.size() || quecon < 0) {
+                                                            System.out.println("Opcion no valida, intente de nuevo");
+                                                        }
+                                                    } while (quecon >= concesionarias.size() || quecon < 0);
+                                                    concesionarias.get(quecon).getCarros().add(new Motocicleta(desp, seraelectrica, color, marca, modelo, anio, precio, cantllantas));
+
                                                     System.out.println("Se ha agregado la motocicleta perfectamente");
                                                     break;
                                                 case 2:
@@ -139,30 +152,131 @@ public class Lab3Progra2JoseBendaña {
                                                     System.out.print("Ingrese el radio de la rueda: ");
                                                     double radio = dobles.nextDouble();
                                                     int cual2;
-                                                    do{
+                                                    do {
                                                         System.out.println("""
                                                                            1- BMX
                                                                            2- De Calle""");
                                                         System.out.print("Ingrese el tipo de bicicleta: ");
                                                         cual2 = enteros.nextInt();
-                                                        if (cual2>2||cual2<1) {
+                                                        if (cual2 > 2 || cual2 < 1) {
                                                             System.out.println("Opcionno valida, ingrese una correcta");
                                                         }
-                                                    }while(cual2>2||cual2<1);
+                                                    } while (cual2 > 2 || cual2 < 1);
                                                     String tipo;
-                                                    if (cual2==1) {
+                                                    if (cual2 == 1) {
                                                         tipo = "BMX";
-                                                    }else{
+                                                    } else {
                                                         tipo = "De calle";
                                                     }
                                                     vehiculos.add(new Bicicleta(desc, radio, color, marca, modelo, anio, precio, cantllantas, tipo));
+                                                    int quecon2;
+                                                    do {
+                                                        for (Concesionaria f : concesionarias) {
+                                                            System.out.println(concesionarias.indexOf(f) + "- " + f);
+                                                        }
+                                                        System.out.print("Ingrese a que concesionario lo quiere agregar: ");
+                                                        quecon2 = enteros.nextInt();
+                                                        if (quecon2 >= concesionarias.size() || quecon2 < 0) {
+                                                            System.out.println("Opcion no valida, intente de nuevo");
+                                                        }
+                                                    } while (quecon2 >= concesionarias.size() || quecon2 < 0);
+                                                    concesionarias.get(quecon2).getCarros().add(new Bicicleta(desc, radio, color, marca, modelo, anio, precio, cantllantas, tipo));
                                                     System.out.println("Se ha agregado la bicicleta perfectamente");
                                                     break;
                                                 default:
                                                     System.out.println("Opcion no valida, ingrese de nuevo");
                                                     break;
                                             }
-                                        }while(dos>2||dos<1);
+                                        } while (dos > 2 || dos < 1);
+                                    } else {
+                                        int op3;
+                                        do {
+                                            System.out.println("""
+                                                               1- Carro
+                                                               2- Camion de carga
+                                                               3- Bus""");
+                                            System.out.print("Ingrese que vahiculo de 4 ruedas quiere agregar: ");
+                                            op3 = enteros.nextInt();
+                                            switch (op3) {
+                                                case 1:
+                                                    System.out.print("Ingrese la cantidad de puertas: ");
+                                                    int cantpuertas = enteros.nextInt();
+                                                    System.out.print("Ingrese la descripcion del motor: ");
+                                                    String descmotor = orac.nextLine();
+                                                    System.out.print("Ingrese la velocidad: ");
+                                                    int vel = enteros.nextInt();
+                                                    vehiculos.add(new Carro(cantpuertas, descmotor, vel, color, marca, modelo, anio, precio, cantllantas));
+                                                    int quecon3;
+                                                    do{
+                                                        for (Concesionaria f : concesionarias) {
+                                                            System.out.println(concesionarias.indexOf(f) + "- " + f);
+                                                        }
+                                                        System.out.print("Ingrese a que concesionario lo quiere agregar: ");
+                                                        quecon3 = enteros.nextInt();
+                                                        if (quecon3 >= concesionarias.size() || quecon3 < 0) {
+                                                            System.out.println("Opcion no valida, intente de nuevo");
+                                                        }
+                                                    } while (quecon3 >= concesionarias.size() || quecon3 < 0);
+                                                    concesionarias.get(quecon3).getCarros().add(new Carro(cantpuertas, descmotor, vel, color, marca, modelo, anio, precio, cantllantas) );
+                                                    System.out.println("Se ha agregado correctmente");
+                                                    break;
+                                                case 2:
+                                                    char resp3;
+                                                    System.out.println("Ingrese el volumen máximo de carga: ");
+                                                    int volmax = enteros.nextInt();
+                                                    System.out.println("Ingrese la altura: ");
+                                                    int altura = enteros.nextInt();
+                                                    do{
+                                                        System.out.println("Tiene retroexcavadora[s/n]: ");
+                                                        resp3 = car.next().charAt(0);
+                                                        if (resp3 != 's' || resp3 != 'S' || resp3 != 'n' || resp3 != 'N') {
+                                                            System.out.println("Opcion no valida, ingrese de nuevo");
+                                                        }
+                                                    }while(resp3 != 's' || resp3 != 'S' || resp3 != 'n' || resp3 != 'N');
+                                                    boolean tieneretro;
+                                                    if (resp3=='s'||resp3=='S') {
+                                                        tieneretro = true;
+                                                    }else{
+                                                        tieneretro = false;
+                                                    }
+                                                    vehiculos.add(new Camion(volmax, altura, tieneretro, color, marca, modelo, anio, precio, cantllantas));
+                                                    int quecon4;
+                                                    do{
+                                                        for (Concesionaria f : concesionarias) {
+                                                            System.out.println(concesionarias.indexOf(f) + "- " + f);
+                                                        }
+                                                        System.out.print("Ingrese a que concesionario lo quiere agregar: ");
+                                                        quecon4 = enteros.nextInt();
+                                                        if (quecon4 >= concesionarias.size() || quecon4 < 0) {
+                                                            System.out.println("Opcion no valida, intente de nuevo");
+                                                        }
+                                                    } while (quecon4 >= concesionarias.size() || quecon4 < 0);
+                                                    concesionarias.get(quecon4).getCarros().add(new Camion(volmax, altura, tieneretro, color, marca, modelo, anio, precio, cantllantas));
+                                                    System.out.println("Se ha agregado correctamente");                                                    break;
+                                                case 3:
+                                                    System.out.print("Ingrese la cantidad de pasajeros: ");
+                                                    int cantpa = enteros.nextInt();
+                                                    vehiculos.add(new Bus(cantpa, color, marca, modelo, anio, precio, cantllantas));
+                                                    int quecon5;
+                                                    do{
+                                                        for (Concesionaria f : concesionarias) {
+                                                            System.out.println(concesionarias.indexOf(f) + "- " + f);
+                                                        }
+                                                        System.out.print("Ingrese a que concesionario lo quiere agregar: ");
+                                                        quecon5 = enteros.nextInt();
+                                                        if (quecon5 >= concesionarias.size() || quecon5 < 0) {
+                                                            System.out.println("Opcion no valida, intente de nuevo");
+                                                        }
+                                                    } while (quecon5 >= concesionarias.size() || quecon5 < 0);
+                                                    concesionarias.get(quecon5).getCarros().add(new Bus(cantpa, color, marca, modelo, anio, precio, cantllantas));
+                                                    System.out.println("Se ha agregado correctamente");
+                                                    break;
+                                                default:
+                                                    System.out.println("Opcion no valida, ingrese de nuevo");
+                                                    break;
+
+                                            }
+                                        } while (op3 > 3 || op3 < 1);
                                     }
                                 }
                                 break;
@@ -170,12 +284,33 @@ public class Lab3Progra2JoseBendaña {
 
                                 break;
                             case 3:
-
+                                int cualcon;
+                                int elim;
+                                do {
+                                    for (Concesionaria f : concesionarias) {
+                                        System.out.print(concesionarias.indexOf(f) + "- " + f);
+                                    }
+                                    System.out.print("Ingrese a que concesionario: ");
+                                    cualcon = enteros.nextInt();
+                                } while (cualcon >= concesionarias.size() || cualcon < 0);
+                                do {
+                                    for (Vehiculo f : concesionarias.get(cualcon).getCarros()) {
+                                        System.out.println(concesionarias.get(cualcon).getCarros().indexOf(f) + "- " + f);
+                                    }
+                                    System.out.print("Ingrese que carro quiere eliminar: ");
+                                    elim = enteros.nextInt();
+                                    if (elim >= concesionarias.get(cualcon).getCarros().size() || elim < 0) {
+                                        System.out.println("Opcion no valida, ingrese de nuevo");
+                                    }
+                                } while (elim >= concesionarias.get(cualcon).getCarros().size() || elim < 0);
+                                concesionarias.get(cualcon).getCarros().remove(elim);
+                                System.out.println("Se ha eliminado perfectamente");
                                 break;
                             default:
                                 System.out.println("Opcion no valida, ingrese de nuevo");
                                 break;
                         }
+
                     } while (opcion > 3 || opcion < 1);
                     break;
                 case 4:
@@ -188,6 +323,7 @@ public class Lab3Progra2JoseBendaña {
                     System.out.println("Opcion no valida, ingrese de nuevo");
                     break;
             }
+
         } while (opcion != 5);
         System.out.println("Salio perfectamente");
     }
