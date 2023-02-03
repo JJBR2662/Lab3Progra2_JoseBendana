@@ -8,10 +8,14 @@ public class Bus extends Vehiculo{
     public Bus(){
     }
 
-    public Bus(int cantpas, String tipo, String color, String marca, String modelo, int anio, double precio, int cantllantas) {
+    public Bus(int cantpas, String color, String marca, String modelo, int anio, double precio, int cantllantas) {
         super(color, marca, modelo, anio, precio, cantllantas);
         this.cantpas = cantpas;
-        this.tipo = tipo;
+        if (cantpas>50) {
+            tipo = "De Ruta";
+        }else{
+            tipo = "Rapidito";
+        }
     }
 
     public int getCantpas() {
@@ -24,10 +28,6 @@ public class Bus extends Vehiculo{
 
     public String getTipo() {
         return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
     }
 
     @Override

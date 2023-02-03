@@ -7,14 +7,17 @@ public class Concesionaria {
     private int id;
     private String direccion;
     private ArrayList<Vehiculo> carros= new ArrayList();
+    private ArrayList<Cliente> clientes = new ArrayList();
+    private double saldo;
 
     public Concesionaria() {
     }
 
-    public Concesionaria(String nombre, int id, String direccion) {
+    public Concesionaria(String nombre, int id, String direccion, double saldo) {
         this.nombre = nombre;
         this.id = id;
         this.direccion = direccion;
+        this.saldo=saldo;
     }
 
     public String getNombre() {
@@ -49,12 +52,25 @@ public class Concesionaria {
         this.carros = carros;
     }
 
+    public ArrayList<Cliente> getClientes() {
+        return clientes;
+    }
+
+    public void setClientes(ArrayList<Cliente> clientes) {
+        this.clientes = clientes;
+    }
+
+    public double getSaldo() {
+        return saldo;
+    }
+
+    public void setSaldo(double saldo) {
+        this.saldo = saldo;
+    }
+
     @Override
     public String toString() {
-        return "Concesionaria{" + "nombre=" + nombre + ", id=" + id + ", direccion=" + direccion + ", carros=" + carros + '}';
+        return "Concesionaria{" + "nombre=" + nombre + ", id=" + id + ", direccion=" + direccion + ", carros=" + carros + ", clientes=" + clientes + ", saldo=" + saldo + '}';
     }
-    
-    
-    
     
 }
