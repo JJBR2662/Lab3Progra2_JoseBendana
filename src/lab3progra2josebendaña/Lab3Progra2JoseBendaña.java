@@ -556,9 +556,9 @@ public class Lab3Progra2JoseBendaña {
         int opcion;
         do {
             System.out.println("""
-                                   1- crear
-                                   2- modificar
-                                   3- eliminar
+                                   1- Crear
+                                   2- Modificar
+                                   3- Eliminar
                                    """);
             System.out.print("Ingrese una opcion: ");
             opcion = enteros.nextInt();
