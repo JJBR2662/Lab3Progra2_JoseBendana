@@ -297,96 +297,100 @@ public class Lab3Progra2JoseBendaña {
                                         }
                                     } while (quecon6 >= concesionarias.size() || quecon6 < 0);
                                     int queve;
-                                    do {
-                                        for (Vehiculo h : concesionarias.get(quecon6).getCarros()) {
-                                            System.out.println(concesionarias.get(quecon6).getCarros().indexOf(h) + "- " + h);
-                                        }
-                                        System.out.print("Ingrese que carro desea modificar: ");
-                                        queve = enteros.nextInt();
-                                    } while (queve >= concesionarias.get(quecon6).getCarros().size() || queve < 0);
-                                    if (concesionarias.get(quecon6).getCarros().get(queve) instanceof Carro) {
-                                        System.out.print("Ingrese la nueva cantidad de puertas: ");
-                                        int cantpuertas = enteros.nextInt();
-                                        ((Carro) (concesionarias.get(quecon6).getCarros().get(queve))).setCantpuertas(cantpuertas);
-                                        System.out.print("Ingrese la descripcion del motor: ");
-                                        String descmotorn = orac.nextLine();
-                                        ((Carro) (concesionarias.get(quecon6).getCarros().get(queve))).setDescmotor(descmotorn);
-                                        System.out.print("Ingrese la nueva velocidad: ");
-                                        int nuevavel = enteros.nextInt();
-                                        ((Carro) (concesionarias.get(quecon6).getCarros().get(queve))).setVelocidad(nuevavel);
-                                    } else if (concesionarias.get(quecon6).getCarros().get(queve) instanceof Camion) {
-
-                                        System.out.print("Ingrese el nuevo volumen maximo: ");
-                                        int volmax = enteros.nextInt();
-                                        ((Camion) (concesionarias.get(quecon6).getCarros().get(queve))).setVolumenmax(volmax);
-                                        System.out.print("Ingrese la nueva altura: ");
-                                        int altura = enteros.nextInt();
-                                        ((Camion) (concesionarias.get(quecon6).getCarros().get(queve))).setAltura(altura);
-                                        char resp4;
+                                    if (concesionarias.get(quecon6).getCarros().isEmpty()) {
+                                        System.out.println("la lista esta vacia");
+                                    } else {
                                         do {
-                                            System.out.println("Tiene retroexcavadora[s/n]: ");
-                                            resp4 = car.next().charAt(0);
-                                            if (resp4 != 's' || resp4 != 'S' || resp4 != 'n' || resp4 != 'N') {
-                                                System.out.println("Opcion no valida, ingrese de nuevo");
+                                            for (Vehiculo h : concesionarias.get(quecon6).getCarros()) {
+                                                System.out.println(concesionarias.get(quecon6).getCarros().indexOf(h) + "- " + h);
                                             }
-                                        } while (resp4 != 's' || resp4 != 'S' || resp4 != 'n' || resp4 != 'N');
-                                        boolean tieneretro;
-                                        if (resp4 == 's' || resp4 == 'S') {
-                                            tieneretro = true;
-                                        } else {
-                                            tieneretro = false;
-                                        }
-                                        ((Camion) (concesionarias.get(quecon6).getCarros().get(queve))).setTieneexc(tieneretro);
+                                            System.out.print("Ingrese que carro desea modificar: ");
+                                            queve = enteros.nextInt();
+                                        } while (queve >= concesionarias.get(quecon6).getCarros().size() || queve < 0);
+                                        if (concesionarias.get(quecon6).getCarros().get(queve) instanceof Carro) {
+                                            System.out.print("Ingrese la nueva cantidad de puertas: ");
+                                            int cantpuertas = enteros.nextInt();
+                                            ((Carro) (concesionarias.get(quecon6).getCarros().get(queve))).setCantpuertas(cantpuertas);
+                                            System.out.print("Ingrese la descripcion del motor: ");
+                                            String descmotorn = orac.nextLine();
+                                            ((Carro) (concesionarias.get(quecon6).getCarros().get(queve))).setDescmotor(descmotorn);
+                                            System.out.print("Ingrese la nueva velocidad: ");
+                                            int nuevavel = enteros.nextInt();
+                                            ((Carro) (concesionarias.get(quecon6).getCarros().get(queve))).setVelocidad(nuevavel);
+                                        } else if (concesionarias.get(quecon6).getCarros().get(queve) instanceof Camion) {
 
-                                    } else if (concesionarias.get(quecon6).getCarros().get(queve) instanceof Bus) {
-                                        System.out.print("Ingrese la cantidad de pasajeros: ");
-                                        int cantpas = enteros.nextInt();
-                                        ((Bus) (concesionarias.get(quecon6).getCarros().get(queve))).setCantpas(cantpas);
-                                    } else if (concesionarias.get(quecon6).getCarros().get(queve) instanceof Motocicleta) {
-                                        System.out.println("Ingrese el nuevo desplazamiento del motor: ");
-                                        String despmotor = orac.nextLine();
-                                        ((Motocicleta) (concesionarias.get(quecon6).getCarros().get(queve))).setDespmotor(despmotor);
-                                        char resp;
-                                        do {
-                                            System.out.print("Es electrica [s/n]? ");
-                                            resp = car.next().charAt(0);
-                                            if (resp != 's' || resp != 'S' || resp != 'n' || resp != 'N') {
-                                                System.out.println("Opcion no valida, intente de nuevo");
+                                            System.out.print("Ingrese el nuevo volumen maximo: ");
+                                            int volmax = enteros.nextInt();
+                                            ((Camion) (concesionarias.get(quecon6).getCarros().get(queve))).setVolumenmax(volmax);
+                                            System.out.print("Ingrese la nueva altura: ");
+                                            int altura = enteros.nextInt();
+                                            ((Camion) (concesionarias.get(quecon6).getCarros().get(queve))).setAltura(altura);
+                                            char resp4;
+                                            do {
+                                                System.out.println("Tiene retroexcavadora[s/n]: ");
+                                                resp4 = car.next().charAt(0);
+                                                if (resp4 != 's' || resp4 != 'S' || resp4 != 'n' || resp4 != 'N') {
+                                                    System.out.println("Opcion no valida, ingrese de nuevo");
+                                                }
+                                            } while (resp4 != 's' || resp4 != 'S' || resp4 != 'n' || resp4 != 'N');
+                                            boolean tieneretro;
+                                            if (resp4 == 's' || resp4 == 'S') {
+                                                tieneretro = true;
+                                            } else {
+                                                tieneretro = false;
                                             }
-                                        } while (resp != 's' || resp != 'S' || resp != 'n' || resp != 'N');
-                                        boolean seraelectrica;
-                                        if (resp == 's' || resp == 'S') {
-                                            seraelectrica = true;
-                                        } else {
-                                            seraelectrica = false;
-                                        }
-                                        ((Motocicleta) (concesionarias.get(quecon6).getCarros().get(queve))).setElectrica(seraelectrica);
-                                    } else if (concesionarias.get(quecon6).getCarros().get(queve) instanceof Bicicleta) {
-                                        System.out.print("Ingrese una nueva descripcion: ");
-                                        String desc = orac.nextLine();
-                                        ((Bicicleta) (concesionarias.get(quecon6).getCarros().get(queve))).setDesc(desc);
-                                        System.out.print("Ingrese el radio de la rueda: ");
-                                        double radio = dobles.nextDouble();
-                                        ((Bicicleta) (concesionarias.get(quecon6).getCarros().get(queve))).setRadiorueda(radio);
-                                        int cual2;
-                                        do {
-                                            System.out.println("""
-                                                                           1- BMX
-                                                                           2- De Calle""");
-                                            System.out.print("Ingrese el tipo de bicicleta: ");
-                                            cual2 = enteros.nextInt();
-                                            if (cual2 > 2 || cual2 < 1) {
-                                                System.out.println("Opcion no valida, ingrese una correcta");
-                                            }
-                                        } while (cual2 > 2 || cual2 < 1);
-                                        String tipo;
-                                        if (cual2 == 1) {
-                                            tipo = "BMX";
-                                        } else {
-                                            tipo = "De calle";
-                                        }
-                                        ((Bicicleta) (concesionarias.get(quecon6).getCarros().get(queve))).setTipo(tipo);
+                                            ((Camion) (concesionarias.get(quecon6).getCarros().get(queve))).setTieneexc(tieneretro);
 
+                                        } else if (concesionarias.get(quecon6).getCarros().get(queve) instanceof Bus) {
+                                            System.out.print("Ingrese la cantidad de pasajeros: ");
+                                            int cantpas = enteros.nextInt();
+                                            ((Bus) (concesionarias.get(quecon6).getCarros().get(queve))).setCantpas(cantpas);
+                                        } else if (concesionarias.get(quecon6).getCarros().get(queve) instanceof Motocicleta) {
+                                            System.out.println("Ingrese el nuevo desplazamiento del motor: ");
+                                            String despmotor = orac.nextLine();
+                                            ((Motocicleta) (concesionarias.get(quecon6).getCarros().get(queve))).setDespmotor(despmotor);
+                                            char resp;
+                                            do {
+                                                System.out.print("Es electrica [s/n]? ");
+                                                resp = car.next().charAt(0);
+                                                if (resp != 's' || resp != 'S' || resp != 'n' || resp != 'N') {
+                                                    System.out.println("Opcion no valida, intente de nuevo");
+                                                }
+                                            } while (resp != 's' || resp != 'S' || resp != 'n' || resp != 'N');
+                                            boolean seraelectrica;
+                                            if (resp == 's' || resp == 'S') {
+                                                seraelectrica = true;
+                                            } else {
+                                                seraelectrica = false;
+                                            }
+                                            ((Motocicleta) (concesionarias.get(quecon6).getCarros().get(queve))).setElectrica(seraelectrica);
+                                        } else if (concesionarias.get(quecon6).getCarros().get(queve) instanceof Bicicleta) {
+                                            System.out.print("Ingrese una nueva descripcion: ");
+                                            String desc = orac.nextLine();
+                                            ((Bicicleta) (concesionarias.get(quecon6).getCarros().get(queve))).setDesc(desc);
+                                            System.out.print("Ingrese el radio de la rueda: ");
+                                            double radio = dobles.nextDouble();
+                                            ((Bicicleta) (concesionarias.get(quecon6).getCarros().get(queve))).setRadiorueda(radio);
+                                            int cual2;
+                                            do {
+                                                System.out.println("""
+                                                                               1- BMX
+                                                                               2- De Calle""");
+                                                System.out.print("Ingrese el tipo de bicicleta: ");
+                                                cual2 = enteros.nextInt();
+                                                if (cual2 > 2 || cual2 < 1) {
+                                                    System.out.println("Opcion no valida, ingrese una correcta");
+                                                }
+                                            } while (cual2 > 2 || cual2 < 1);
+                                            String tipo;
+                                            if (cual2 == 1) {
+                                                tipo = "BMX";
+                                            } else {
+                                                tipo = "De calle";
+                                            }
+                                            ((Bicicleta) (concesionarias.get(quecon6).getCarros().get(queve))).setTipo(tipo);
+
+                                        }
                                     }
                                     break;
                                 case 3:
@@ -508,7 +512,7 @@ public class Lab3Progra2JoseBendaña {
                                         System.out.println("Este cliente no tiene vehiculos");
                                     } else {
                                         do {
-                                            for (Vehiculo a : concesionarias.get(quecons2).getCarros()) {
+                                            for (Vehiculo a : clientes.get(cualcli2).getCarrosobtenidos()) {
                                                 System.out.println(concesionarias.get(quecons2).getCarros().indexOf(a) + "- " + a);
                                             }
                                             System.out.print("Ingrese el vehiculo que quiere comprar: ");
