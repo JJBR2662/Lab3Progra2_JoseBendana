@@ -462,10 +462,10 @@ public class Lab3Progra2JoseBendaña {
                                             System.out.println("Opcion no valida, ingrese de nuevo");
                                         }
                                     }while(queveh>=concesionarias.get(quecons).getCarros().size()||queveh<0);
-                                    if (clientes.get(cualcli).getSaldo()>= concesionarias.get(quecons).getCarros().get(queveh).getPrecio()) {
-                                        clientes.get(cualcli).setSaldo(clientes.get(cualcli).getSaldo()- concesionarias.get(quecons).getCarros().get(queveh).getPrecio());
+                                    if (clientes.get(cualcli).getSaldo()>= concesionarias.get(quecons).getCarros().get(queveh).getPrecio()+(concesionarias.get(quecons).getCarros().get(queveh).getPrecio()*0.075)) {
+                                        clientes.get(cualcli).setSaldo(clientes.get(cualcli).getSaldo()- concesionarias.get(quecons).getCarros().get(queveh).getPrecio()-(concesionarias.get(quecons).getCarros().get(queveh).getPrecio()*0.075));
                                         clientes.get(cualcli).getCarrosobtenidos().add(concesionarias.get(quecons).getCarros().get(queveh));
-                                        concesionarias.get(quecons).setSaldo(concesionarias.get(quecons).getSaldo()+concesionarias.get(quecons).getCarros().get(queveh).getPrecio());
+                                        concesionarias.get(quecons).setSaldo(concesionarias.get(quecons).getSaldo()+concesionarias.get(quecons).getCarros().get(queveh).getPrecio()+(concesionarias.get(quecons).getCarros().get(queveh).getPrecio()*0.075));
                                         concesionarias.get(quecons).getCarros().remove(queveh);
                                         concesionarias.get(quecons).getClientes().add(clientes.get(cualcli));
                                     }else{
@@ -479,7 +479,7 @@ public class Lab3Progra2JoseBendaña {
                                     for (Concesionaria j : concesionarias) {
                                         System.out.println(concesionarias.indexOf(j)+"- "+j);
                                     }
-                                    System.out.println("Ingrese que consecionario quiere visitar: ");
+                                    System.out.println("Ingrese que consecionario quiere comprar: ");
                                     quecons2 = enteros.nextInt();
                                     if (quecons2>=concesionarias.size()||quecons2<0) {
                                         System.out.println("Opcion no valida, ingrese de nuevo");
@@ -490,16 +490,32 @@ public class Lab3Progra2JoseBendaña {
                                     for (Cliente c : clientes) {
                                         System.out.println(clientes.indexOf(c)+"- "+c);
                                     }
-                                    System.out.print("Ingrese que cliente quiere comprar: ");
+                                    System.out.print("Ingrese que cliente quiere vender: ");
                                     cualcli2 = enteros.nextInt();
                                     if (cualcli2>=clientes.size()||cualcli2<0) {
                                         System.out.println("Opcion no valida, ingrese de nuevo");
                                     }
                                 }while(cualcli2>=clientes.size()||cualcli2<0);
+                                int queveh2;
                                 if (clientes.get(cualcli2).getCarrosobtenidos().isEmpty()){
                                     System.out.println("Este cliente no tiene vehiculos");
                                 }else{
-                                    
+                                    do{
+                                        for (Vehiculo a : concesionarias.get(quecons2).getCarros()) {
+                                            System.out.println(concesionarias.get(quecons2).getCarros().indexOf(a)+"- "+a);
+                                        }
+                                        System.out.print("Ingrese el vehiculo que quiere comprar: ");
+                                        queveh2 = enteros.nextInt();
+                                        if (queveh2>=concesionarias.get(quecons2).getCarros().size()||queveh2<0){
+                                            System.out.println("Opcion no valida, ingrese de nuevo");
+                                        }
+                                    }while(queveh2>=concesionarias.get(quecons2).getCarros().size()||queveh2<0);
+                                    if (concesionarias.get(quecons2).getSaldo()>=clientes.get(cualcli2).getCarrosobtenidos().get(queveh2).getPrecio()){
+                                        concesionarias.get(quecons2).setSaldo(concesionarias.get(quecons2).getSaldo()-clientes.get(cualcli2).getCarrosobtenidos().get(queveh2).getPrecio());
+                                        concesionarias.get(quecons2).getCarros().add(clientes.get(cualcli2).getCarrosobtenidos().get(queveh2));
+                                        clientes.get(cualcli2).setSaldo( clientes.get(cualcli2).getSaldo()+ clientes.get(cualcli2).getCarrosobtenidos().get(queveh2).getPrecio());
+                                        clientes.get(cualcli2).getCarrosobtenidos().remove(queveh2);
+                                    }
                                 }
                                 break;
                             default:
